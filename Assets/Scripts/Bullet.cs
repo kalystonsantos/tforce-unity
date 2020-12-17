@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         //Movimentar a bola para direita
-        transform.Translate(Vector3.right * Speed * Time.deltaTime)        ;
+        transform.Translate(Vector3.right * Speed * Time.deltaTime);
+
+        
     }
 }

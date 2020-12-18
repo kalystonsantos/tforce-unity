@@ -24,19 +24,24 @@ public class Enemy : MonoBehaviour
     void Update()
     {
            //transform.Translate(Vector3.left * Speed * Time.deltaTime); 
-
-        rig.velocity = new Vector2(-Speed, rig.velocity.y);
+        if(GameController.current.PlayerIsAlive)
+        {
+           rig.velocity = new Vector2(-Speed, rig.velocity.y);
 
            if(transform.position.x < backPoint.position.x)
            {
                Destroy(gameObject);
            }
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision) 
     {
         if(collision.gameObject.tag == "bullet")
         {
+            GetComponent<CircleCollider2D>().enabled = false;
+            GameController.current.AddScore(10); //ao matar inimigo ganha 10 moedas.
             animator.SetTrigger("destroy");
             Destroy(gameObject, 1f);
         }   
